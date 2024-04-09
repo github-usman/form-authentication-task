@@ -1,65 +1,61 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import styles from './signInPage.module.css';
+import React, { useEffect, useState } from 'react';
+import styles from "./signInPage.module.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../redux/authSlice';
 
 const SignInPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: '' });
-  };
 
-  const handleSignIn = e => {
-    e.preventDefault();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
-    // Validation checking
-    let errors = {};
-    if (!formData.email) {
-      errors.email = 'Email is required';
-    }
-    if (!formData.password) {
-      errors.password = 'Password is required';
-    }
 
-    if (Object.keys(errors).length === 0) {
-      dispatch(signIn(formData));
+  useEffect(() => {
+
+    if (isAuthenticated) {
+      navigate('/profile');
     } else {
-      setErrors(errors);
+      // alert('not valid')
     }
+  }, [isAuthenticated, navigate]);
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    dispatch(signIn({ email, password }));
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={handleSignIn}>
-        <div>
+    <div className={styles.container}>
+      <h1>Signin to your <br /> PopX account</h1>
+      <p className={styles.details}>Lorem ipsum dolor sit amet,<br /> consectetur adipiscing elit,</p>
+      <form onSubmit={handleSignIn} className={styles.form}>
+        <div className={'inputDiv'}>
+          <label className="label">Email Address</label>
           <input
             type="email"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="Enter email address"
+            className="input"
+            required
           />
-          {errors.email && <span>{errors.email}</span>}
         </div>
-        <div>
+        <div className={'inputDiv'}>
+          <label className="label">Password</label>
           <input
             type="password"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Enter password"
+            className="input"
+            required
           />
-          {errors.password && <span>{errors.password}</span>}
         </div>
-        <button type="submit" className="btn btn-primary">
-          Sign In
-        </button>
+        <button type="submit" className='blueBtn'>Login</button>
       </form>
     </div>
   );

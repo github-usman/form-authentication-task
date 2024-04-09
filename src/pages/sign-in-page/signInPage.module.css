@@ -1,0 +1,31 @@
+.container {
+  width: 335px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.div {
+  position: relative;
+  outline: none;
+}
+
+.details {
+  font-size: 18px;
+  text-align: left;
+  color: #1d2226;
+  opacity: 60%;
+  margin: auto;
+  width: 335px;
+  margin-top: 10px;
+  font-variant: regular;
+  font-family: 'Rubik', Regular, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.form {
+  margin-top: 33px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

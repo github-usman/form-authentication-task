@@ -1,0 +1,63 @@
+/* inputs */
+
+.input {
+  border: 1px solid #cbcbcb;
+  border-radius: 6px;
+  outline: none;
+  height: 40px;
+  color: #1d2226;
+  width: 335px;
+  margin: 0 auto;
+  padding: 0 14px;
+  display: block;
+  font-size: 14px;
+  font-family: Rubik, Regular, sans-serif;
+  background-color: #f7f8f9;
+}
+
+.input::placeholder {
+  color: #919191;
+}
+
+.label {
+  position: absolute;
+  background-color: #f7f8f9;
+  top: -7px;
+  left: 11px;
+  width: 105px;
+  padding: 0 0 0 4px;
+  font-size: 13px;
+  font-family: Rubik, Regular, sans-serif;
+  color: #6c25ff;
+}
+
+.inputDiv {
+  position: relative;
+  outline: none;
+}
+
+/* buttons */
+
+.blueBtn,
+.pinkGreyBtn {
+  opacity: 100%;
+  width: 335px;
+  border-radius: 6px;
+  font-family: 'Rubik';
+  font-size: 16px;
+  font-weight: 500;
+  height: 46px;
+  border: none;
+  letter-spacing: 0px;
+  cursor: pointer;
+}
+
+.pinkGreyBtn {
+  background-color: #6c25ff4b;
+  color: #1d2226;
+}
+
+.blueBtn {
+  background-color: #6c25ff;
+  color: #ffffff;
+}

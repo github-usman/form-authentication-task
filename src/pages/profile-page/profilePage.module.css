@@ -1,0 +1,97 @@
+
+.container{
+    width: 335px;
+  margin: auto;
+}
+
+.titleHeading {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 100;
+  height: 68px;
+  background: #ffffff;
+  font-family: Rubik, Regular;
+  padding-top: 27px;
+  text-transform: capitalize;
+}
+
+.subContainer {
+  width: 337px;
+  margin: 30px auto 10px auto;
+  font-family: Rubik, Regular;
+  text-transform: capitalize;
+}
+.subContainer img {
+  height: 76px;
+  width: 76px;
+  cursor: pointer;
+}
+
+.subContainer p {
+  font-size: 14px;
+  color: #1d2226;
+  line-height: 22px;
+}
+.photoName {
+  display: flex;
+}
+
+.userImage {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.icon {
+  position: absolute;
+  right: -4px;
+  bottom: 7px;
+}
+
+.userName {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 20px;
+}
+.userName p:nth-child(1) {
+  font-weight: 520;
+}
+
+hr {
+  border: dotted 2px #cbcbcb;
+  border-style: none none dotted none;
+  width: 100%;
+}
+hr:last-child {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 40px;
+  border-style: none none dotted;
+  width: 100%;
+}
+
+.userAllInfo {
+  margin-top: 20px;
+  width: 337px;
+  margin: 20px auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 18px;
+  color: #6c25ff;
+}
+.logout {
+  margin-left: 18px;
+  position: absolute;
+  bottom: 60px;
+}
+
+.tempPara {
+  font-size: 14px;
+  color: #1d2226;
+  line-height: 22px;
+  width: 337px;
+  margin: auto;
+  font-family: Rubik, Regular;
+  font-weight: 100;
+}
