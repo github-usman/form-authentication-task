@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from "./signInPage.module.css";
+import styles from './signInPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../redux/authSlice';
@@ -19,13 +19,13 @@ const SignInPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleSignIn = async (e) => {
+  // check user is authorize or not
+  const handleSignIn = async e => {
     e.preventDefault();
     try {
       dispatch(signIn(formData));
-
     } catch (error) {
-      toast.success('Sign in Error Internal server Error')
+      toast.success('Sign in Error Internal server Error');
     }
   };
 
@@ -38,11 +38,18 @@ const SignInPage = () => {
   };
   return (
     <div className={styles.container}>
-      <h1>Signin to your <br /> PopX account</h1>
-      <p className={styles.details}>Lorem ipsum dolor sit amet,<br /> consectetur adipiscing elit,</p>
+      <h1>
+        Signin to your <br /> PopX account
+      </h1>
+      <p className={styles.details}>
+        Lorem ipsum dolor sit amet,
+        <br /> consectetur adipiscing elit,
+      </p>
       <form onSubmit={handleSignIn} className={styles.form}>
         <div className={'inputDiv'}>
-          <label className="label" htmlFor='email'>Email address*</label>
+          <label className="label" htmlFor="email">
+            Email address*
+          </label>
           <input
             type="email"
             name="email"
@@ -54,7 +61,9 @@ const SignInPage = () => {
           />
         </div>
         <div className={'inputDiv'}>
-          <label className="label" htmlFor='password'>Password*</label>
+          <label className="label" htmlFor="password">
+            Password*
+          </label>
           <input
             type="password"
             name="password"
@@ -65,7 +74,16 @@ const SignInPage = () => {
             required
           />
         </div>
-        <button type="submit" className={(formData?.password?.length>0 && formData?.email?.length>0) ? 'blueBtn':'disableBtn' }>Login</button>
+        <button
+          type="submit"
+          className={
+            formData?.password?.length > 0 && formData?.email?.length > 0
+              ? 'blueBtn'
+              : 'disableBtn'
+          }
+        >
+          Login
+        </button>
       </form>
     </div>
   );

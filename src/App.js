@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import './styles/global.css';
 import { Toaster } from 'react-hot-toast';
 import {
   Navigate,
@@ -6,12 +7,22 @@ import {
   BrowserRouter as Router,
   Routes
 } from 'react-router-dom';
-import LandingPage from './pages/landing-page/LandingPage';
-import SignInPage from './pages/sign-in-page/SignInPage';
-import SignUpPage from './pages/sing-up-page/SignUpPage';
-import ProfilePage from './pages/profile-page/ProfilePage';
-import './styles/global.css';
 import { useSelector } from 'react-redux';
+import Loading from './components/loading/Loading';
+
+// Lazy load components
+const LazyLandingPage = React.lazy(
+  () => import('./pages/landing-page/LandingPage')
+);
+const LazySignInPage = React.lazy(
+  () => import('./pages/sign-in-page/SignInPage')
+);
+const LazySignUpPage = React.lazy(
+  () => import('./pages/sing-up-page/SignUpPage')
+);
+const LazyProfilePage = React.lazy(
+  () => import('./pages/profile-page/ProfilePage')
+);
 
 const App = () => {
   // HOC
@@ -22,19 +33,21 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/login" element={<SignInPage />} />
-        <Route exact path="/signup" element={<SignUpPage />} />
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route exact path="/" element={<LazyLandingPage />} />
+          <Route exact path="/login" element={<LazySignInPage />} />
+          <Route exact path="/signup" element={<LazySignUpPage />} />
 
-        {/* protected routes */}
-        <Route
-          exact
-          path="/profile"
-          element={<ProtectedRoute element={<ProfilePage />} />}
-        />
-      </Routes>
-      <Toaster position="top-center" />
+          {/* protected routes */}
+          <Route
+            exact
+            path="/profile"
+            element={<ProtectedRoute element={<LazyProfilePage />} />}
+          />
+        </Routes>
+        <Toaster position="top-center" />
+      </Suspense>
     </Router>
   );
 };

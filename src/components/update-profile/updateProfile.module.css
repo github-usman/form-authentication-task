@@ -1,0 +1,48 @@
+.container {
+  background-color: #535050;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.InputContainer {
+  gap: 1rem;
+  width: 345px;
+  background-color: #f7f8f9e5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 1rem;
+}
+
+.btnContiner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.CheckCred {
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
+
+.inputs {
+  margin-top: 31px;
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+}
+
+.cancelBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.cancelBtn:hover {
+  color: green;
+}

@@ -12,20 +12,27 @@ const authSlice = createSlice({
   reducers: {
     signIn(state, action) {
       const userData = action.payload;
-      // console.log(state, 'state')
-      // console.log(JSON.parse(JSON.stringify(state.user)), 'state');
-      const data = JSON.parse(JSON.stringify(state.user))
-
-      // if ((userData?.email === data?.email) && (userData?.password === data?.password)) {
-      //   console.log(data?.email, 'email-------->', data?.password, "==========", userData?.email, ' email', userData?.password, 'password')
-      // }
-      if ((userData?.email === data?.email) && (userData?.password === data?.password)) {
-        console.log(data?.email, 'email-------->', data?.password, "==========", userData?.email, ' email', userData?.password, 'password')
-        toast.success(`Welcome! ${data.email}`)
+      const data = JSON.parse(JSON.stringify(state.user));
+      // check authorize user or not
+      if (
+        userData?.email === data?.email &&
+        userData?.password === data?.password
+      ) {
+        console.log(
+          data?.email,
+          'email-------->',
+          data?.password,
+          '==========',
+          userData?.email,
+          ' email',
+          userData?.password,
+          'password'
+        );
+        toast.success(`Welcome! ${data.fullName}`);
         state.isAuthenticated = true;
       } else {
         state.isAuthenticated = false;
-        toast.error(`Enter Valid details`)
+        toast.error(`Enter Valid details or Register`);
       }
     },
     signUp(state, action) {

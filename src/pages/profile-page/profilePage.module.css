@@ -1,7 +1,8 @@
-
-.container{
-    width: 335px;
+.container {
+  width: 335px;
   margin: auto;
+  height: 100vh;
+  position: relative;
 }
 
 .titleHeading {
@@ -32,6 +33,7 @@
   color: #1d2226;
   line-height: 22px;
 }
+
 .photoName {
   display: flex;
 }
@@ -57,41 +59,45 @@
   font-weight: 520;
 }
 
-hr {
-  border: dotted 2px #cbcbcb;
-  border-style: none none dotted none;
-  width: 100%;
-}
-hr:last-child {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 40px;
-  border-style: none none dotted;
-  width: 100%;
-}
-
 .userAllInfo {
-  margin-top: 20px;
-  width: 337px;
-  margin: 20px auto 20px auto;
+  box-shadow:
+    1px 1px 8px 1px #176ebe,
+    inset 1px 1px 2px 1px #0c0b0c8f;
+  border-radius: 15px;
+  padding: 1rem;
+  background-color: #ddcaca4b;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  font-size: 18px;
-  color: #6c25ff;
+  font-family: Rubik, Regular;
+  color: #806d6d;
+  gap: 1rem;
 }
+
+.userAllInfo p {
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 3px;
+  box-shadow: 0px 1px 0px 0px #a19191;
+}
+
 .logout {
   margin-left: 18px;
   position: absolute;
   bottom: 60px;
 }
 
-.tempPara {
-  font-size: 14px;
-  color: #1d2226;
-  line-height: 22px;
-  width: 337px;
-  margin: auto;
-  font-family: Rubik, Regular;
-  font-weight: 100;
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 1.5rem;
+  bottom: 2rem;
+}
+
+.modal {
+  position: absolute;
+  background-color: black;
+  border: 2px solid black;
 }

@@ -1,24 +1,32 @@
-import { useDispatch } from 'react-redux';
-import { signUp } from '../../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateAccount } from '../../redux/authSlice';
+import { MdCancel } from 'react-icons/md';
 import React, { useState } from 'react';
-import styles from './signUpPage.module.css';
-import { useNavigate } from 'react-router-dom';
+import styles from './updateProfile.module.css';
+import toast from 'react-hot-toast';
 
-const SignUpPage = () => {
+const UpdateProfile = ({ setIsOpen }) => {
+  const userData = useSelector(state => state.auth.user);
   const [formData, setFormData] = useState({
-    fullName: '',
-    phoneNumber: '',
-    email: '',
-    password: '',
-    companyName: ''
+    fullName: userData?.fullName,
+    phoneNumber: userData?.phoneNumber,
+    email: userData?.email,
+    password: userData?.password,
+    companyName: userData?.companyName
   });
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSignUp = e => {
+  // update the user data
+  const handleUpdate = e => {
     e.preventDefault();
-    dispatch(signUp(formData));
-    navigate('/login');
+    dispatch(updateAccount(formData));
+    toast.success('Profile Updated successfully!');
+    setIsOpen(false);
+  };
+
+  // clsoe modal without any changes
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   const handleChange = e => {
@@ -30,12 +38,12 @@ const SignUpPage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSignUp} className={styles.container}>
+    <div className={styles.container}>
+      <form onSubmit={handleUpdate} className={styles.InputContainer}>
+        <div className={styles.cancelBtn} onClick={handleClose}>
+          <MdCancel size={35} />
+        </div>
         <div>
-          <h1>
-            Create your <br /> PopX account
-          </h1>
           <div className={styles.inputs}>
             <div className={'inputDiv'}>
               <label className="label" htmlFor="fullName">
@@ -106,39 +114,26 @@ const SignUpPage = () => {
                 className={'input'}
               />
             </div>
-            <div className={styles.agencyLebel}>
-              <label htmlFor="is-agency">Are you an Agency?*</label>
-              <div className={styles.radio}>
-                <input
-                  type="radio"
-                  id="yes"
-                  name="agency"
-                  value="yes"
-                  defaultChecked
-                />
-                <label htmlFor="yes">Yes</label>
-                <input type="radio" id="no" name="agency" value="no" />
-                <label htmlFor="no">No</label>
-              </div>
-            </div>
           </div>
         </div>
-        <button
-          type="submit"
-          className={
-            formData?.password?.length > 0 &&
-            formData?.email?.length > 0 &&
-            formData?.fullName?.length &&
-            formData?.phoneNumber.length > 0
-              ? 'blueBtn'
-              : 'disableBtn'
-          }
-        >
-          Sign Up
-        </button>
+        <div className={styles.btnContiner}>
+          <button
+            type="submit"
+            className={
+              formData?.password?.length > 0 &&
+              formData?.email?.length > 0 &&
+              formData?.fullName?.length &&
+              formData?.phoneNumber.length > 0
+                ? 'blueBtn'
+                : 'disableBtn'
+            }
+          >
+            Update
+          </button>
+        </div>
       </form>
     </div>
   );
 };
 
-export default SignUpPage;
+export default UpdateProfile;
