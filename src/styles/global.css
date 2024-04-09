@@ -39,7 +39,8 @@
 /* buttons */
 
 .blueBtn,
-.pinkGreyBtn {
+.pinkGreyBtn,
+.disableBtn {
   opacity: 100%;
   width: 335px;
   border-radius: 6px;
@@ -60,4 +61,10 @@
 .blueBtn {
   background-color: #6c25ff;
   color: #ffffff;
+}
+
+.disableBtn {
+  background-color: #CBCBCB;
+  color: #ffffff;
+  cursor:not-allowed;
 }

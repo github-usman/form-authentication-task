@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 const initialState = {
   user: null,
@@ -10,12 +11,21 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     signIn(state, action) {
-      const { email, password } = action.payload;
-      if (email === state?.user?.email && password === state?.user?.password) {
+      const userData = action.payload;
+      // console.log(state, 'state')
+      // console.log(JSON.parse(JSON.stringify(state.user)), 'state');
+      const data = JSON.parse(JSON.stringify(state.user))
+
+      // if ((userData?.email === data?.email) && (userData?.password === data?.password)) {
+      //   console.log(data?.email, 'email-------->', data?.password, "==========", userData?.email, ' email', userData?.password, 'password')
+      // }
+      if ((userData?.email === data?.email) && (userData?.password === data?.password)) {
+        console.log(data?.email, 'email-------->', data?.password, "==========", userData?.email, ' email', userData?.password, 'password')
+        toast.success(`Welcome! ${data.email}`)
         state.isAuthenticated = true;
       } else {
         state.isAuthenticated = false;
-        console.log('not valid');
+        toast.error(`Enter Valid details`)
       }
     },
     signUp(state, action) {

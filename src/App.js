@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import {
   Navigate,
   Route,
@@ -33,6 +34,7 @@ const App = () => {
           element={<ProtectedRoute element={<ProfilePage />} />}
         />
       </Routes>
+      <Toaster position="top-center" />
     </Router>
   );
 };

@@ -3,59 +3,69 @@ import styles from "./signInPage.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../redux/authSlice';
+import toast from 'react-hot-toast';
 
 const SignInPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
-
   useEffect(() => {
-
     if (isAuthenticated) {
+      setFormData({ email: '', password: '' });
       navigate('/profile');
-    } else {
-      // alert('not valid')
     }
   }, [isAuthenticated, navigate]);
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    dispatch(signIn({ email, password }));
+    try {
+      dispatch(signIn(formData));
+
+    } catch (error) {
+      toast.success('Sign in Error Internal server Error')
+    }
   };
 
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
   return (
     <div className={styles.container}>
       <h1>Signin to your <br /> PopX account</h1>
       <p className={styles.details}>Lorem ipsum dolor sit amet,<br /> consectetur adipiscing elit,</p>
       <form onSubmit={handleSignIn} className={styles.form}>
         <div className={'inputDiv'}>
-          <label className="label">Email Address</label>
+          <label className="label" htmlFor='email'>Email address*</label>
           <input
             type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="Enter email address"
-            className="input"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email address"
+            className={'input'}
             required
           />
         </div>
         <div className={'inputDiv'}>
-          <label className="label">Password</label>
+          <label className="label" htmlFor='password'>Password*</label>
           <input
             type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="Enter password"
-            className="input"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Enter new password"
+            className={'input'}
             required
           />
         </div>
-        <button type="submit" className='blueBtn'>Login</button>
+        <button type="submit" className={(formData?.password?.length>0 && formData?.email?.length>0) ? 'blueBtn':'disableBtn' }>Login</button>
       </form>
     </div>
   );

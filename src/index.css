@@ -12,6 +12,12 @@ body {
   margin: auto;
   background-color: #f7f8f9;
 }
+
+.react-hot-toast-container {
+  height: 100vh;
+  max-width: 375px;
+  margin: 0 auto;
+}
 h1 {
   font-family: 'Rubik', Medium, sans-serif;
   font-size: 28px;
