@@ -73,6 +73,8 @@
   font-family: Rubik, Regular;
   color: #806d6d;
   gap: 1rem;
+  rotate: 10deg;
+
 }
 
 .userAllInfo p {

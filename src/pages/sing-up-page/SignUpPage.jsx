@@ -134,7 +134,7 @@ const SignUpPage = () => {
               : 'disableBtn'
           }
         >
-          Sign Up
+          Create Account
         </button>
       </form>
     </div>
